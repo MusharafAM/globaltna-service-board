@@ -39,6 +39,11 @@ const jobRequestSchema = new mongoose.Schema(
       match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address"],
     },
 
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+
     status: {
       type: String,
       enum: ["Open", "In Progress", "Closed"],
