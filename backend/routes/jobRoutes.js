@@ -8,10 +8,16 @@ const {
   deleteJob,
 } = require("../controllers/jobController");
 
+const { protect } = require("../middleware/authMiddleware");
+
 const router = express.Router();
 
-router.route("/").get(getJobs).post(createJob);
+router.route("/").get(getJobs).post(protect, createJob);
 
-router.route("/:id").get(getJobById).patch(updateJobStatus).delete(deleteJob);
+router
+  .route("/:id")
+  .get(getJobById)
+  .patch(protect, updateJobStatus)
+  .delete(protect, deleteJob);
 
 module.exports = router;

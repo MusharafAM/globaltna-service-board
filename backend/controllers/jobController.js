@@ -68,13 +68,14 @@ const createJob = async (req, res, next) => {
     }
 
     const job = await JobRequest.create({
-      title,
-      description,
-      category,
-      location,
-      contactName,
-      contactEmail,
-    });
+  title,
+  description,
+  category,
+  location,
+  contactName,
+  contactEmail,
+  createdBy: req.user._id,
+});
 
     res.status(201).json({
       success: true,
